@@ -10,18 +10,20 @@ if mode == "s":
     with open("file_s.txt", "w") as thefile:
         thefile.write(file_s)
 
-    key = input("Enter the key for encryption: ")
+    key_s = Fernet.generate_key()
+    with open("key_s.key", "wb") as thekey_s:
+        thekey_s.write(key_s)
 
     files = []
     for file in os.listdir():
-        if file == "Enigma.py":
+        if file == "Enigma.py" or file == "key_s.key" or file == "key_r.key":
             continue
         files.append(file)
 
     for file in files:
         with open(file, "r") as thefile_s:
             contents_s = thefile_s.read()
-        thefile_s_encrypted = Fernet(key).encrypt(contents_s)
+        thefile_s_encrypted = Fernet(key_s).encrypt(contents_s)
         with open(file, "w") as thefile_s:
             thefile_s.write(thefile_s_encrypted)
 else:
@@ -29,11 +31,13 @@ else:
     with open("file_r.txt", "w") as thefile_r:
         thefile_r.write(file_r)
     
-    key_r = input("Input the key for decryption: ")
-    
+    key_r = input("Paste the key for decryption: /n")
+    with open("key_r.key", "wbclear") as thekey_r:
+        thekey_r.write(key_r)
+
     files = []
     for file in os.listdir():
-        if file == "Enigma.py":
+        if file == "Enigma.py" or file == "key_s.key" or file == "key_r.key":
             continue
         files.append(file)
     
