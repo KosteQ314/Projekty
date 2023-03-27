@@ -16,7 +16,7 @@ if mode == "s":
 
     files = []
     for file in os.listdir():
-        if file == "Enigma.py" or file == "key_s.key" or file == "key_r.key":
+        if file != "file_s.txt" or file != "file_r.txt":
             continue
         files.append(file)
 
@@ -37,7 +37,7 @@ else:
 
     files = []
     for file in os.listdir():
-        if file == "Enigma.py" or file == "key_s.key" or file == "key_r.key":
+        if file != "file_s.txt" or file != "file_r.txt":
             continue
         files.append(file)
     
