@@ -16,13 +16,14 @@ if mode == "s":
 
     files = []
     for file in os.listdir():
-        if file != "file_s.txt" or file != "file_r.txt":
+        if file != "file_s.txt":
             continue
         files.append(file)
 
     for file in files:
         with open(file, "r") as thefile_s:
             contents_s = thefile_s.read()
+            #FIX
         thefile_s_encrypted = Fernet(key_s).encrypt(contents_s)
         with open(file, "w") as thefile_s:
             thefile_s.write(thefile_s_encrypted)
@@ -31,13 +32,13 @@ else:
     with open("file_r.txt", "w") as thefile_r:
         thefile_r.write(file_r)
     
-    key_r = input("Paste the key for decryption: /n")
-    with open("key_r.key", "wbclear") as thekey_r:
+    key_r = input("Paste the key for decryption:\n")
+    with open("key_r.key", "wb") as thekey_r:
         thekey_r.write(key_r)
 
     files = []
     for file in os.listdir():
-        if file != "file_s.txt" or file != "file_r.txt":
+        if file != "file_r.txt":
             continue
         files.append(file)
     
